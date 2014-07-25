@@ -3,12 +3,40 @@
 function send_email($from, $to, $subject, $message){
 
 	// Helper function for sending email
-	
-	$headers  = 'MIME-Version: 1.0' . "\r\n";
-	$headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
-	$headers .= 'From: '.$from . "\r\n";
+	include("phpmailer/class.phpmailer.php");  // 匯入PHPMailer library
+	 
+	$mail= new PHPMailer();          //建立新物件	
+	$mail->IsSMTP(); //設定使用SMTP方式寄信 
+	$mail->SMTPAuth = true; //設定SMTP需要驗證 
+	$mail->SMTPSecure = "ssl"; // Gmail請服用 
+	$mail->Host = "smtp.gmail.com"; //Gmail請服用 
+	// $mail->Host = 'ssl://smtp.gmail.com:465'; 
+	// $mail->Host = "這邊是smtp"; //Gamil的SMTP主機 
+	$mail->Port = 465; //Gamil的SMTP主機的SMTP埠位為465埠。 
+	$mail->CharSet = "utf-8"; //設定郵件編碼 
+	$mail->Encoding = "base64";
+	$mail->FromName = "Bryce";
+	$mail->Username = ''; //設定驗證帳號 
+	$mail->Password = ""; //設定驗證密碼  
+	$mail->From = ''; //設定寄件者信箱
+	$mail->IsHTML(true); //設定郵件內容為HTML
+	$mail->Subject = $subject;    //設定郵件標題
+	$mail->Body = $message;  //設定郵件內容
+	$mail->addAddress($to,'user');     // Add a recipient
 
-	return mail($to, $subject, $message, $headers);
+	if(!$mail->send()) {
+	    echo 'Message could not be sent.';
+	    echo 'Mailer Error: ' . $mail->ErrorInfo;
+	    return false;
+	} else {
+	    return true;
+	}
+
+	// $headers  = 'MIME-Version: 1.0' . "\r\n";
+	// $headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
+	// $headers .= 'From: '.$from . "\r\n";
+
+	// return mail($to, $subject, $message, $headers);
 }
 
 function get_page_url(){

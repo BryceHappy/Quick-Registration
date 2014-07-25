@@ -163,11 +163,6 @@ catch(Exception $e){
 
 		</form>
 
-		<footer>
-            <a class="tz" href="http://tutorialzine.com/2013/08/simple-registration-system-php-mysql/">Super Simple Registration System</a>
-            <div id="tzine-actions"></div>
-            <span class="close"></span>
-        </footer>
         
 		<!-- JavaScript Includes -->
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
