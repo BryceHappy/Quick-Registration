@@ -1,4 +1,4 @@
 Quick-Registration
 ==================
 
-Quick Registration With PHP And MySQL (use ORM)
+Quick Registration With PHP And MySQL (use ORM) And PHPMailer
